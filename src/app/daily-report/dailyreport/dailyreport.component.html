@@ -1,0 +1,222 @@
+<body (click)="NormalClick()">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div *ngIf="Switchload == true" class="SwitchLoad">
+        <img class="GearLoad" src="./assets/images/TechCircle.png">
+        <img class="GF" src="./assets/images/GF.png">
+    </div>
+    <div class="block-border">
+        <div class="row0 ">
+            <div class=" col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                <div class="top-header-block1">
+                    <div class="top-header-group">
+                        <div>
+                            <h1 (click)="reload()" style="cursor: context-menu;">Event Report</h1>
+                        </div>
+                        <div class="Master-Search">
+                            <!-- <input class="form-control Master-Search-form" type="text" name="search"
+                                [disabled]="SearchWordDisable"
+                                [(ngModel)]="SearchWordModel"
+                                (ngModelChange)="SearchTextReport(SearchWordModel)"
+                                (keydown.enter)="EnterWord($event)" autocomplete="off"
+                                placeholder="Search ID, Location, Device , Event           &#61442;">
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row1 ">
+            <div class=" col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                <div class="Block-1">
+                    <span class="Calendar-Header">Date</span>
+                    <span class="Calendar-Warning" [hidden]="DateWarningDisplay">*Please Enter Date</span>
+                    <div class="DropdownCalendarReport">
+                        <div class="DropdownSituationLabel">
+                        </div>
+                        <mat-form-field style="z-index: 1;">
+                            <input matInput class="Calendar-input" placeholder="" name="date_time" [max]="limitDate"
+                                [(ngModel)]="DateTimeCalendar" [selectMode]="'range'" [owlDateTime]="dt"
+                                (ngModelChange)="changeTimeCalendar(DateTimeCalendar = $event)" readonly>
+                            <input class="Calendar-output" type="text" [owlDateTimeTrigger]="dt"
+                                [value]="DateTimeCalendarRange" readonly>
+                            <owl-date-time backdropClass="myBackdropClass" panelClass="myPanelClass"
+                                [pickerType]="'calendar'" #dt></owl-date-time>
+                            <mat-icon matPrefix style="display:none">calendar_today</mat-icon>
+                            <mat-icon class="Dropdown-Arrow" [owlDateTimeTrigger]="dt" matSuffix>arrow_drop_down
+                            </mat-icon>
+                        </mat-form-field>
+                    </div>
+                    <span class="Time-Header">Time</span>
+                    <span class="Time-Warning" [hidden]="TimeWarningHidden">*Please Enter Time</span>
+                    <span class="Time-Warning2" [hidden]="TimeInvalidHidden">*Invalid Time</span>
+                    <div class="Time-Filter-Block">
+                        <div class="DropdownCalendarTime1">
+                            <input class="Time1" type="time" [(ngModel)]="Time1" (ngModelChange)="startTime(Time1)">
+                        </div>
+                        <h1 style="color:white; position: relative;
+                            color: white;
+                            left: 54px;
+                            top: 72px;">-</h1>
+                        <div class="DropdownCalendarTime2">
+                            <input class="Time2" type="time" [(ngModel)]="Time2" (ngModelChange)="stopTime(Time2)"
+                                min="MinTime" max="MaxTime">
+                        </div>
+                    </div>
+                    <span class="Site-Header">Site</span>
+                    <div class="DropdownLocationReport">
+                        <div class="DropdownLocationLabelReport">
+                            <mat-icon class="LocationIcon">location_on</mat-icon>
+                            <span class="LocationLabel">Site : Location</span>
+                            <span class="SelectSiteLabel"
+                                [hidden]="SelectedLocationDisplay">{{CountSelectedLocation}}</span>
+                        </div>
+                        <ng-select class="LocationReport" (click)="clicklocation()"
+                            [(ngModel)]="selectedSiteLocationReportModel" [items]="selectedSiteLocationReportSort"
+                            bindLabel="name" bindValue="SITE_ID" [multiple]="true" placeholder="Site : Location"
+                            (keyup)="CheckType($event)"  [closeOnSelect]="false"
+                            [selectableGroup]="true" groupBy="group"
+                            (change)="changeLocation(selectedSiteLocationReportModel)">
+                            <!---->
+                            <!--style="right: 50%;  position: relative; z-index: 1; width: 140%;"-->
+                            <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
+                                <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" />&nbsp;
+                                <span class="checkbox"></span>
+                                <span>{{item.group}}</span>
+                            </ng-template>
+
+                            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                                <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" />&nbsp;
+                                <span class="checkbox"></span>
+                                <span>{{item.name}}</span>
+                            </ng-template>
+                        </ng-select>
+                    </div>
+
+                    <span class="Device-Header">Device</span>
+                    <div class="DropdownDeviceReport">
+                        <div class="DropdownDeviceReportLabel">
+                            <mat-icon class="DeviceIcon">devices</mat-icon>
+                            <span class="DeviceLabel">Device</span>
+                            <span class="SelectDeviceLabel"
+                                [hidden]="SelectedDeviceDisplay">{{CountSelectedDevice}}</span>
+                        </div>
+                        <ng-select class="DeviceReport" (click)="clickdevice()" [(ngModel)]="selectedDeviceReportModel"
+                            [items]="selectedDeviceReport" bindLabel="name" bindValue="DEVICE_ID" [multiple]="true"
+                            placeholder="Device" (keyup)="CheckType2($event)"
+                            [closeOnSelect]="false" [selectableGroup]="true" groupBy="group"
+                            (change)="changeDevice(selectedDeviceReportModel)">
+                            <!--(change)="changeLocation(selectedSiteLocationModel)"-->
+                            <!--style="right: 50%;  position: relative; z-index: 1; width: 140%;"-->
+                            <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
+                                <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" />&nbsp;
+                                <span class="checkbox"></span>
+                                <span>{{item.group}}</span>
+                            </ng-template>
+
+                            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                                <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" />&nbsp;
+                                <span class="checkbox"></span>
+                                <span>{{item.name}}</span>
+                            </ng-template>
+                        </ng-select>
+                    </div>
+                    <span class="Event-Header">Event</span>
+                    <div class="DropdownStatusReport">
+                        <div class="DropdownStatusReportLabel">
+                            <mat-icon class="StatusIcon">report_problem</mat-icon>
+                            <span class="StatusLabel">Event</span>
+                            <span class="SelectStatusLabel"
+                                [hidden]="SelectedStatusDisplay">{{CountSelectedStatus}}</span>
+                        </div>
+                        <ng-select class="StatusReport" (click)="clickstatus()" [(ngModel)]="selectedStatusReportModel"
+                            [items]="selectedStatusReport" bindLabel="name" bindValue="EVENT_ID" [multiple]="true"
+                            placeholder="Status" (keyup)="CheckType3($event)"
+                            [closeOnSelect]="false" [selectableGroup]="true" groupBy="group"
+                            (change)="changeEvent(selectedStatusReportModel)">
+                            <!--(change)="changeLocation(selectedSiteLocationModel)"-->
+                            <!--style="right: 50%;  position: relative; z-index: 1; width: 140%;"-->
+                            <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
+                                <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" />&nbsp;
+                                <span class="checkbox"></span>
+                                <span>{{item.group}}</span>
+                            </ng-template>
+
+                            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                                <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" />&nbsp;
+                                <span class="checkbox"></span>
+                                <span>{{item.name}}</span>
+                            </ng-template>
+                        </ng-select>
+                    </div>
+                    <div>
+                        <button class="Button-Clear" (click)="ClearFilter()"><a>Clear</a></button>
+                    </div>
+                    <div>
+                        <button class="Button-Search" (click)="SearchReport();showSpinner()"
+                            [disabled]="SearchDisable"><a>Search</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row2">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 col-center-block ">
+                <div class="Block-2-foundation">
+                    <div class="Block-2 scrollbar-primary">
+                        <div *ngIf="ReportData.length == 0 && Switchload == false" class="NoData">
+                            <span>No Data</span>
+                        </div>
+                        <ngx-spinner *ngIf="SpinnerPlay == 1 && (isLoading| async)" class="loadingReport"
+                            bdColor="rgba(0, 0, 0, 0.8)" size="default" color="#fff" type="ball-spin-clockwise"
+                            [fullScreen]="false">
+                            <p style="color: white"></p>
+                        </ngx-spinner>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr class="Table-Header">
+                                    <td class="Header-Section-First">No.</td>
+                                    <td class="Header-Section">ID</td>
+                                    <td class="Header-Section">Date</td>
+                                    <td class="Header-Section">Time</td>
+                                    <td class="Header-Section">Location</td>
+                                    <td class="Header-Section">Device</td>
+                                    <td class="Header-Section">Event</td>
+                                    <td class="Header-Section-Last" *ngIf="EventStatusCheck != undefined">Event Status
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let item of ReportData | filter:searchText |filter:selectedItem ; index as i ">
+                                    <td>{{(i+1)+(PageSize*(PageCurrent-1))}}</td>
+                                    <td>{{item.ID}}</td>
+                                    <td>{{item.DATE}}</td>
+                                    <td>{{item.TIME}}</td>
+                                    <td>{{item.LOCATION}}</td>
+                                    <td>{{item.DEVICE}}</td>
+                                    <td>{{item.EVENT}}</td>
+                                    <td *ngIf="EventStatusCheck != undefined">{{item.EVENT_STATUS}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row3 ">
+            <div class=" col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                <div class="Block-3">
+                    <div [hidden]="PaginationDisplay">
+                        <ngb-pagination class="d-flex justify-content-center" [pageSize]="PageSize"
+                            [collectionSize]="PageMaxSize" [(page)]="PageCurrent" [maxSize]="5" [rotate]="true"
+                            [ellipses]="false" [boundaryLinks]="true"
+                            (pageChange)="PageSelect(PageCurrent);showSpinner()" aria-label="Default pagination">
+                        </ngb-pagination>
+                    </div>
+                    <button *ngIf="ReportData.length != 0" class="Button-Export" (click)="exportAsXLSX()"
+                        [disabled]="ButtonDisable" [hidden]="false">Export<i></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <body>

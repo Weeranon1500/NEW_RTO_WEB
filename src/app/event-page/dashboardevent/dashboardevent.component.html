@@ -1,0 +1,327 @@
+<body>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="row0 ">
+      <div class=" col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 ">
+        <div class="top-header-block1">
+          <div class="top-header-group">
+            <div>
+              <h1>Event Dashboard</h1>
+            </div>
+            <div class="DropdownLocation2">
+              <div class="DropdownLocationLabel2">
+                <mat-icon class="LocationIcon2" >location_on</mat-icon>
+                <span class="LocationLabel2" >Site : Location</span>
+            </div>
+              <ng-select
+              class="LocationSite2"
+              [(ngModel)]="selectedSiteLocationModel2"
+              [items]="selectedSiteLocationName2"
+              bindLabel="name"
+              bindValue="id"
+              [multiple]="true"
+              [closeOnSelect]="false" 
+              [selectableGroup]="true"
+              groupBy="group"
+              (change)="changeLocation2(selectedSiteLocationModel2)" 
+              >
+              <!--style="right: 50%;  position: relative; z-index: 1; width: 140%;"-->
+              <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index" >
+                <input id="item-{{index}}"  type="checkbox" [ngModel]="item$.selected"  />&nbsp;
+                <span class="checkbox"></span>
+                <span >{{item.group}}</span>
+              </ng-template>
+  
+              <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/>&nbsp;
+                <span class="checkbox"></span>
+                <span>{{item.name}}</span>
+              </ng-template>
+            </ng-select>
+          </div>
+          <div class="DropdownMonth2">
+            <div class="DropdownMonthLabel2">
+              <mat-icon class="MonthIcon">calendar_today</mat-icon>
+            </div>
+            <ng-select
+            class="MonthList2"
+            [(ngModel)]="selectedDateTimeModel" 
+            (change)="changeDateTime($event)" 
+            >
+              
+              <ng-option *ngFor="let dateTime of selectedDateTime" [value]="dateTime.value" >{{dateTime.name}}</ng-option>
+            </ng-select>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class=" col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 ">
+        <div class="top-header-block2">
+          <div class="top-header-group">
+            <div>
+              <h1></h1>
+            </div>
+            <div class="DropdownLocation1">
+              <div class="DropdownLocationLabel">
+                <mat-icon class="LocationIcon" >location_on</mat-icon>
+                <span class="LocationLabel" >Site : Location</span>
+            </div>
+              <ng-select
+              class="LocationSite"
+              [(ngModel)]="selectedSiteLocationModel"
+              [items]="selectedSiteLocationName"
+              bindLabel="name"
+              bindValue="id"
+              [multiple]="true"
+              [closeOnSelect]="false" 
+              [selectableGroup]="true"
+              groupBy="group"
+              (change)="changeLocation(selectedSiteLocationModel)" 
+              >
+              <!--style="right: 50%;  position: relative; z-index: 1; width: 140%;"-->
+              <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index" >
+                <input id="item-{{index}}"  type="checkbox" [ngModel]="item$.selected"  />&nbsp;
+                <span class="checkbox"></span>
+                <span >{{item.group}}</span>
+              </ng-template>
+  
+              <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/>&nbsp;
+                <span class="checkbox"></span>
+                <span>{{item.name}}</span>
+              </ng-template>
+            </ng-select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class=" col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 ">
+      <div class="top-header-block3">
+        <div class="top-header-group">
+          <div>
+            <h1></h1>
+          </div>
+      </div>
+    </div>
+  </div> 
+  </div>         
+    <div class="row1">
+      <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="Block-1">
+          <div class="Block-header2">
+            <span class="Block-text-header">Number of </span>
+            <span class="Block-text-header">Event Logs</span>
+          </div>
+          <div class="LineLog">
+            <div id="Linechart">
+              <apx-chart
+                [series]="LinechartOptions.series"
+                [chart]="LinechartOptions.chart"
+                [theme]="LinechartOptions.theme"
+                [xaxis]="LinechartOptions.xaxis"
+                [yaxis]="LinechartOptions.yaxis"
+                [dataLabels]="LinechartOptions.dataLabels"
+                [colors]="LinechartOptions.colors"
+                [fill]="LinechartOptions.fill"
+                [grid]="LinechartOptions.grid"
+                [legend]="LinechartOptions.legend"
+                [stroke]="LinechartOptions.stroke"
+                [title]="LinechartOptions.title"
+              ></apx-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class=" col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 ">
+          <div class="Block-2">
+            <div class="Block-header">
+              <span class="Block-text-header">Event by Hour</span>
+            </div>
+            <div class="BarLog">
+              <div id="Barchart">
+                <apx-chart
+                  [series]="BarchartOptions.series"
+                  [chart]="BarchartOptions.chart"
+                  [dataLabels]="BarchartOptions.dataLabels"
+                  [plotOptions]="BarchartOptions.plotOptions"
+                  [yaxis]="BarchartOptions.yaxis"
+                  [legend]="BarchartOptions.legend"
+                  [fill]="BarchartOptions.fill"
+                  [stroke]="BarchartOptions.stroke"
+                  [tooltip]="BarchartOptions.tooltip"
+                  [xaxis]="BarchartOptions.xaxis"
+                ></apx-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="Block-3">
+              <div class="Block-header">
+                <span class="Block-text-header">Daily Support Status</span>
+              </div>
+              <div class="DonutLog">
+                <div id="Donutchart">
+                  <apx-chart
+                    [series]="DonutchartOptions.series"
+                    [chart]="DonutchartOptions.chart"
+                    [plotOptions]="DonutchartOptions.plotOptions"
+                    [labels]="DonutchartOptions.labels"
+                    [dataLabels]="DonutchartOptions.dataLabels"
+                    [colors]="DonutchartOptions.colors"
+                    [fill]="DonutchartOptions.fill"
+                    [legend]="DonutchartOptions.legend"
+                    [stroke]="DonutchartOptions.stroke"
+                    [responsive]="DonutchartOptions.responsive"
+                  ></apx-chart>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  
+      <div class="row2 ">
+        <div class=" col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 ">
+          <div class="low-header-block">
+            <div class="top-header-block1">
+              <div class="top-header-group">
+                <div>
+                  <h1>Event Dashboard</h1>
+                </div>
+              <div class="DropdownEvent">
+                <div class="DropdownEventLabel">
+                  <mat-icon class="EventIcon">notification_important</mat-icon>
+                </div>
+                <ng-select
+                class="EventType"
+                [(ngModel)]="selectedEventModel" 
+                (change)="changeEventType(selectedEventModel)" 
+                >
+  
+                  <ng-option *ngFor="let Event of selectedEvent" [value]="Event.value" >{{Event.name}}</ng-option>
+                </ng-select>
+              </div>
+              <div class="DropdownCalendar">
+                <mat-form-field style="z-index: 1;">
+                  <input matInput 
+                  class="Calendar-input"
+                  placeholder="DateTime" 
+                  name="date_time"
+                  [max]="limitDate"
+                  [(ngModel)]="DateTimeCalendar"
+                  [owlDateTime]="dt"
+                  (ngModelChange)="changeTimeCalendar(DateTimeCalendar = $event)">
+                  <input
+                  class="Calendar-output"
+                  type="text"
+                  [owlDateTimeTrigger]="dt"
+                  [value]="DateTimeCalendar | date: 'yyyy/MM/dd'"
+                  > 
+                  <owl-date-time [pickerType]="'calendar'" #dt></owl-date-time>
+                  <mat-icon matPrefix>calendar_today</mat-icon>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>       
+        </div> 
+      </div> 
+      <div class=" col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 ">
+        <div class="top-header-block2">
+         
+      </div>
+    </div>        
+    </div>
+    <div class="row3">
+      <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 ">
+          <div class="Block-5" #screen>
+            <div class="Block-header">
+              <span class="Block-text-header">Event History</span>
+            </div>
+            <div class="Block-History scrollbar-primary" style="overflow-x: hidden; overflow-y: auto;">
+            <app-history [DataHistoryTransfer]="EventHistoryTransfer" (clickEventHistory)="onClickEventData($event)"></app-history>
+          </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12 col-12 ">
+          <div class="Block-6" >
+            <div class="Block-6-Capture" id="BlockCapture" >
+            <div class="EventShow-DateTime">
+              <h4 *ngIf="EventImageCondition == 0" style="color: white;">Event Name : </h4>
+              <h4 *ngIf="EventImageCondition == 1 || EventImageCondition == 2 " style="color: white;">{{EventName}} : {{EventDate}}</h4>
+            </div>  
+            <div class="EventShow-Location"  >
+             <h4 *ngIf="EventImageCondition == 0" style="color: white;">Location : </h4>
+             <h4 *ngIf="EventImageCondition == 1 || EventImageCondition == 2 " style="color: white;">Location : {{EventSite}}</h4>
+             <!--<button class="Event-Img-Download" *ngIf="EventImageCondition == 1 && ImageCount == 1" ><a href="{{ImageEvent}}">Download Image</a></button>-->
+             <div *ngIf="EventImageCondition == 1 || EventImageCondition == 2 " data-html2canvas-ignore="true" class="Export-Button">
+              <div class="SVG-Block">
+                <img class="SVG-Snapshot" src="./assets/images/Export.svg">
+              </div>
+            </div>
+             <div *ngIf="EventImageCondition == 1 || EventImageCondition == 2" data-html2canvas-ignore="true" class="Snapshot-Button">
+              <div class="SVG-Block">
+                <img (click)="save('image.png')" class="SVG-Snapshot" src="./assets/images/Camera.svg">
+              </div>
+            </div>
+            <!--
+             <div class="dropdown-download" *ngIf="EventImageCondition == 1 && ImageCount == 1">
+              <button class="dropbtn">Download Image</button>
+              <div class="dropdown-download-content">
+                <a href="{{ImageEvent}}">Download Image</a>
+                <a (click)="save('image.png')">Capture PNG</a>
+                <a (click)="save('image.jpg')">Capture JPG</a>
+              </div>
+            </div>
+             <div class="dropdown-download" *ngIf="EventImageCondition == 2 && ImageCount == 3">
+              <button class="dropbtn">Download Image</button>
+              <div class="dropdown-download-content">
+                <a href="{{ImageEvent1}}">Download Image 1</a>
+                <a href="{{ImageEvent2}}">Download Image 2 </a>
+                <a (click)="save('image.png')">Capture PNG</a>
+                <a (click)="save('image.jpg')">Capture JPG</a>
+              </div>
+            </div>
+            -->
+            </div>
+            <div class="EventImage-Block">
+              <div class="EventShow-Image"  >
+                <img id="BlockCapture2" crossOrigin="true" *ngIf="EventImageCondition == 1 && currentEventValue == 90" src="{{ImageEvent}}" width="600px" height="320px"/>
+                
+                <div id="BlockCapture2" class="Fire-Alarm" *ngIf="EventImageCondition == 1 && currentEventValue == 53">
+                  <img  crossOrigin="true" class="Img-Fire"  src="assets/images/FireAlarm.png" width="50px" height="70px"/>
+                  <span class="Image-Fire-Header" >Fire Alarm</span>
+                </div>
+                <div id="BlockCapture2" class="Emergency-Call" *ngIf="EventImageCondition == 1 && currentEventValue == 244">
+                  <img crossOrigin="true"  class="Img-Emergency-Call" src="assets/images/user.svg" width="290px" height="290px"/>
+                  <div class="Emergency-Img-Plate">
+                    <img crossOrigin="true"  class="Img-Emergency-Icon" src="assets/images/emergency-phone.svg" width="30px" height="30px"/>
+                    <span class="Emergency-Img-Header" >Emergency Call</span>
+                    <span class="Emergency-Img-Name" >{{EmergencyName}}</span>
+                    <span class="Emergency-Img-Phone" >{{EmergencyPhone}}</span>  
+                  </div>
+                </div>
+
+                <div id="BlockCapture2" class="Face-Img" *ngIf="EventImageCondition == 2 && currentEventValue == 107" style="display: table-row;">
+                  <img crossOrigin="true" class="Image-Face-Employee" src="{{ImageEvent1}}" width="300px" height="300px"/>
+                  <span class="Image-Face-Employee-Header" >Original</span>
+                  <img crossOrigin="true" class="Real-Face-Employee" src="{{ImageEvent2}}" width="300px" height="300px"/>   
+                  <span class="Real-Face-Employee-Header" >Snapshot</span>
+                  <div class="Face-Img-Plate">
+                    <span class="Face-Img-Header" >Face Regcognition</span>
+                    <span class="Face-Img-Name" >{{Facename}}</span> 
+                  </div>
+                </div>
+                
+                <div id="BlockCapture2" class="LPR-Blacklist"  *ngIf="EventImageCondition == 1 && currentEventValue == 104">
+                  <img crossOrigin="true" class="Img-LPR" src="assets/images/internet-lost.svg" width="70px" height="70px"/>
+                  <span class="Image-LPR-Header" >Connection Lost</span>
+                </div>
+              </div>
+            </div>
+          </div>
+         </div>
+        </div>
+    </div>
+  
+  </body>

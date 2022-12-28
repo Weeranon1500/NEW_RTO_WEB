@@ -1,0 +1,410 @@
+<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <div class="row0 ">
+    <div class=" col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+      <div class="top-header-block">
+        <div class="top-header-group" style="display: flex; justify-content: space-between;">
+          <div>
+            <h1>Monitoring Dashboard</h1>
+          </div>
+          <div class="DropdownLocation">
+            <div class="DropdownLabel">
+              <mat-icon class="LocationIcon">location_on</mat-icon>
+              <span class="LocationLabel">Site : Location</span>
+            </div>
+            <ng-select class="LocationSite" [(ngModel)]="selectedSiteLocationModel" [items]="selectedSiteLocationName"
+              bindLabel="name" bindValue="id" [multiple]="true" [closeOnSelect]="false" [selectableGroup]="true"
+              groupBy="group" (change)="changeLocation(selectedSiteLocationModel)">
+              <!--style="right: 50%;  position: relative; z-index: 1; width: 140%;"-->
+              <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
+                <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" />&nbsp;
+                <span class="checkbox"></span>
+                <span>{{item.group}}</span>
+              </ng-template>
+
+              <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" />&nbsp;
+                <span class="checkbox"></span>
+                <span>{{item.name}}</span>
+              </ng-template>
+            </ng-select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+  <div class="row1">
+    <div class=" col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
+      <div class="Block-1">
+        <div class="Block-header">
+          <span class="Block-text-header">Devices Summary</span>
+        </div>
+        <div class="container-device-summary">
+          <div class="item-status-device"></div>
+          <span class="font-status-device">Devices</span>
+          <div class="item-status-problem-device"></div>
+          <span class="font-status-device">Problem Devices</span>
+        </div>
+        <div class="pieChart">
+          <!-- pie chart -->
+          <apx-chart id="PieChart" 
+          [series]="optionsPie.series" 
+          [chart]="optionsPie.chart" 
+          [legend]="optionsPie.legend"
+          [labels]="optionsPie.labels" 
+          [colors]="optionsPie.colors" 
+          [states]="optionsPie.states"></apx-chart>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+      <div class="Block-2">
+        <div class="Block-header">
+          <span class="Block-text-header">Total Devices</span>
+        </div>
+        <div class="Block-img-total">
+          <div class="text-total-device">{{ totalDevices }}</div>
+          <img class="img-total-device" src="assets/images/total-devices@2x.png">
+
+        </div>
+
+      </div>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+      <div class="Block-3">
+        <div class="Block-header">
+          <span class="Block-text-header">Problem Devices</span>
+        </div>
+        <div class="Block-img-total">
+          <div class="text-problem-device">{{ problemDevices }}</div>
+          <img class="img-problem-device" src="assets/images/problem-devices@2x.png">
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="row2">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+      <div class="Block-4">
+        <div class="Block4-header">
+          <span class="Block4-text-header">Total Devices Types</span>
+        </div>
+        <div class="Total-Device-Content">
+          <div class="col-xl-3 col-lg-6 col-md-12 col-sm-12 col-12 ">
+            <div class="Block-41">
+              <img class="img-total-server" src="assets/images/server.png">
+              <span class="font-total-device">Server</span>
+              <mat-progress-bar class="ProgressbarServer" [mode]="mode" [value]="valueServerTotal"></mat-progress-bar>
+              <div class="table">
+                <div class="tbody">
+                  <a class="tr">
+                    <span class="device-text-total-server">{{ serverTotal }}</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6 col-md-12 col-sm-12 col-12 ">
+            <div class="Block-41">
+              <img class="img-total-nvr" src="assets/images/nvr.png">
+              <span class="font-total-device">NVR</span>
+              <mat-progress-bar class="ProgressbarNvr" [mode]="mode" [value]="valueNvrTotal"></mat-progress-bar>
+              <div class="table">
+                <div class="tbody">
+                  <a class="tr">
+                    <span class="device-text-total-nvr">{{ nvrTotal }}</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6 col-md-12 col-sm-12 col-12 ">
+            <div class="Block-41">
+              <img class="img-total-networkswitch" src="assets/images/networkswitch.png">
+              <span class="font-total-device">Network Switch</span>
+              <mat-progress-bar class="ProgressbarNetworkSwitch" [mode]="mode" [value]="valueSwitchNetworkTotal">
+              </mat-progress-bar>
+              <div class="table">
+                <div class="tbody">
+                  <a class="tr">
+                    <span class="device-text-total-networkswitch">{{ switchNetworkTotal }}</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6 col-md-12 col-sm-12 col-12 ">
+            <div class="Block-41">
+              <img class="img-total-camera" src="assets/images/camera.png">
+              <span class="font-total-device">Camera</span>
+              <mat-progress-bar class="ProgressbarCamera" [mode]="mode" [value]="valueCctvTotal"></mat-progress-bar>
+              <div class="table">
+                <div class="tbody">
+                  <a class="tr">
+                    <span class="device-text-total-camera">{{ cctvTotal }}</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row3 ">
+    <div class=" col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+      <div class="low-header-block">
+        <div class="low-header-group">
+          <div>
+            <h1>Devices Types</h1>
+          </div>
+          <div class="DropdownDevice">
+            <div class="DropdownDeviceLabel">
+              <mat-icon class="DeviceIcon">important_devices</mat-icon>
+              <span class="DeviceLabel">Device</span>
+            </div>
+            <ng-select class="DeviceType" [(ngModel)]="selectedDeviceModel" [items]="selectedDevice" bindLabel="Status"
+              bindValue="value" [multiple]="true" [closeOnSelect]="false" [selectableGroup]="true" groupBy="group"
+              (change)="changeDeviceShow(selectedDeviceModel)">
+
+              <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
+                <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" />&nbsp;
+                <span class="checkbox"></span>
+                <span>{{item.group}}</span>
+              </ng-template>
+
+              <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" />&nbsp;
+                <span class="checkbox"></span>
+                <span>{{item.name}}</span>
+              </ng-template>
+
+              <ng-option *ngFor="let Period of selectedDevice" [value]="Period.value">{{Period.name}}</ng-option>
+            </ng-select>
+          </div>
+          <div class="DropdownMonth">
+            <div class="DropdownMonthLabel">
+              <mat-icon class="MonthIcon">calendar_today</mat-icon>
+            </div>
+            <ng-select class="MonthList" [(ngModel)]="selectedDateTimeModel" (change)="changeDateTime($event)">
+
+              <ng-option *ngFor="let dateTime of selectedDateTime" [value]="dateTime.value">{{dateTime.name}}
+              </ng-option>
+            </ng-select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row4">
+    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 ">
+      <div class="Block-5">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
+          <div class="Block-51">
+            <div class="Radial-Chart-Block-Server">
+              <div id="RadialchartServer">
+                <apx-chart class="Server-Radial-Chart" 
+                  [series]="RadialchartOptions.series"
+                  [chart]="RadialchartOptions.chart"
+                  [colors]="RadialchartOptions.colors" 
+                  [plotOptions]="RadialchartOptions.plotOptions"
+                  [labels]="RadialchartOptions.labels">
+                </apx-chart>
+              </div>
+            </div>
+            <img class="img-device-server" src="assets/images/server.png">
+            
+            <div class="Server-Detail">
+              <span class="font-head-device-type">Server</span>
+              <div class="device-type-status-online">
+                <div class="device-type-status-outer-online" style="background-color: #03A696">
+                  <div class="device-type-status-inner-online" style="background-color: #000000"></div>
+                </div>
+              </div>
+              <span class="device-type-text-online">Online</span>
+              <div class="table">
+                <div class="tbody">
+                  <a class="tr">
+                    <span class="device-type-text-online-value" style="color: #03A696">{{ serverOnline }}</span>
+                  </a>
+                </div>
+              </div>
+              <div class="device-type-status-offline">
+                <div class="device-type-status-outer-offline" style="background-color: #9FD1CC">
+                  <div class="device-type-status-inner-offline" style="background-color: #000000"></div>
+                </div>
+              </div>
+              <span class="device-type-text-offline">Offline</span>
+              <div class="table">
+                <div class="tbody">
+                  <a class="tr">
+                    <span class="device-type-text-offline-value" style="color: #9FD1CC">{{ serverOffline }}</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
+          <div class="Block-52">
+            <div class="Radial-Chart-Block-Nvr">
+              <div id="RadialchartNvr">
+                <apx-chart class="Nvr-Radial-Chart" 
+                  [series]="RadialchartOptions.series"
+                  [chart]="RadialchartOptions.chart" 
+                  [colors]="RadialchartOptions.colors" 
+                  [plotOptions]="RadialchartOptions.plotOptions"
+                  [labels]="RadialchartOptions.labels"></apx-chart>
+              </div>
+            </div>
+            <img class="img-device-nvr" src="assets/images/nvr.png">
+            <span class="font-head-device-type">NVR</span>
+            <div class="device-type-status-online">
+              <div class="device-type-status-outer-online" style="background-color: #9F56D5">
+                <div class="device-type-status-inner-online" style="background-color: #000000"></div>
+              </div>
+            </div>
+            <span class="device-type-text-online">Online</span>
+            <div class="table">
+              <div class="tbody">
+                <a class="tr">
+                  <span class="device-type-text-online-value" style="color: #9F56D5">{{ nvrOnline }}</span>
+                </a>
+              </div>
+            </div>
+            <div class="device-type-status-offline">
+              <div class="device-type-status-outer-offline" style="background-color: #CAB5D9">
+                <div class="device-type-status-inner-offline" style="background-color: #000000"></div>
+              </div>
+            </div>
+            <span class="device-type-text-offline">Offline</span>
+            <div class="table">
+              <div class="tbody">
+                <a class="tr">
+                  <span class="device-type-text-offline-value" style="color: #CAB5D9">{{ nvrOffline }}</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
+          <div class="Block-53">
+            <div class="Radial-Chart-Block-Switch">
+              <div id="RadialchartSwitch">
+                <apx-chart class="Switch-Radial-Chart" 
+                  [series]="RadialchartOptions.series"
+                  [chart]="RadialchartOptions.chart" 
+                  [colors]="RadialchartOptions.colors" 
+                  [plotOptions]="RadialchartOptions.plotOptions"
+                  [labels]="RadialchartOptions.labels"></apx-chart>
+              </div>
+            </div>
+            <img class="img-device-switch" src="assets/images/networkswitch.png">
+            <span class="font-head-device-type">Network Switch</span>
+            <div class="device-type-status-online">
+              <div class="device-type-status-outer-online" style="background-color: #6081FF">
+                <div class="device-type-status-inner-online" style="background-color: #000000"></div>
+              </div>
+            </div>
+            <span class="device-type-text-online">Online</span>
+            <div class="table">
+              <div class="tbody">
+                <a class="tr">
+                  <span class="device-type-text-online-value" style="color: #6081FF">{{ switchNetworkOnline }}</span>
+                </a>
+              </div>
+            </div>
+            <div class="device-type-status-offline">
+              <div class="device-type-status-outer-offline" style="background-color: #B4C1F4">
+                <div class="device-type-status-inner-offline" style="background-color: #000000"></div>
+              </div>
+            </div>
+            <span class="device-type-text-offline">Offline</span>
+            <div class="table">
+              <div class="tbody">
+                <a class="tr">
+                  <span class="device-type-text-offline-value" style="color: #B4C1F4">{{ switchNetworkOffline }}</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
+          <div class="Block-54">
+            <div class="Radial-Chart-Block-Camera">
+              <div id="RadialchartCamera">
+                <apx-chart class="Camera-Radial-Chart" 
+                  [series]="RadialchartOptions.series"
+                  [chart]="RadialchartOptions.chart" 
+                  [colors]="RadialchartOptions.colors" 
+                  [plotOptions]="RadialchartOptions.plotOptions"
+                  [labels]="RadialchartOptions.labels"></apx-chart>
+              </div>
+            </div>
+            <img class="img-device-camera" src="assets/images/camera.png">
+
+            <div class="camera-info">
+              <span class="font-head-device-type">Camera</span>
+              <div class="device-type-status-online">
+                <div class="device-type-status-outer-online" style="background-color: #96710B">
+                  <div class="device-type-status-inner-online" style="background-color: #000000"></div>
+                </div>
+              </div>
+              <span class="device-type-text-online">Online</span>
+              <div class="table">
+                <div class="tbody">
+                  <a class="tr">
+                    <span class="device-type-text-online-value" style="color: #96710B">{{ cctvOnline }}</span>
+                  </a>
+                </div>
+              </div>
+              <div class="device-type-status-offline">
+                <div class="device-type-status-outer-offline" style="background-color: #E3AC17">
+                  <div class="device-type-status-inner-offline" style="background-color: #000000"></div>
+                </div>
+              </div>
+              <span class="device-type-text-offline">Offline</span>
+              <div class="table">
+                <div class="tbody">
+                  <a class="tr">
+                    <span class="device-type-text-offline-value" style="color: #E3AC17">{{ cctvOffline }}</span>
+                  </a>
+                </div>
+              </div>
+              <!--
+                  <div class="device-type-status-Tampering">
+                      <div class="device-type-status-outer-Tampering" style="background-color: #E4D3A6">
+                        <div class="device-type-status-inner-Tampering" style="background-color: #000000"></div>
+                    </div>
+                  </div>
+                  <span class="device-type-text-Tampering">Tampering</span>
+                  <div class="table">
+                    <div class="tbody" >
+                      <a class="tr">
+                      <span class="device-type-text-Tampering-value" style="color: #E4D3A6">{{ cctvtampering }}</span>
+                      </a>
+                    </div>
+                  </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 ">
+      <div class="Block-6">
+        <div class="GraphLog">
+          <div id="lineChart">
+            <apx-chart class="logApex" [series]="optionsLine.series" [chart]="optionsLine.chart"
+              [xaxis]="optionsLine.xaxis" [dataLabels]="optionsLine.dataLabels" [grid]="optionsLine.grid"
+              [stroke]="optionsLine.stroke" [title]="optionsLine.title" [theme]="optionsLine.theme"
+              [markers]="optionsLine.markers" [noData]="optionsLine.noData"></apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

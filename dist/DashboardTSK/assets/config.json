@@ -1,0 +1,31 @@
+{
+    "ENV": {
+        
+        "URL_AUTHEN": "13.212.9.156",
+        "URL_AUTHEN_GSOC": "54.169.17.226",
+        "URL_DEVICE": "13.212.9.156",
+        "URL_LISTSITE": "13.212.9.156",
+        "URL_LOG": "13.212.9.156",
+        "URL_LOGMONTH": "13.212.9.156",
+
+        "URL_EVENTHOURS": "54.169.17.226",
+        "URL_EVENTWEEKLY": "54.169.17.226",
+        "URL_EVENTMONTHLY": "54.169.17.226",
+        "URL_EVENTHISTORY": "54.169.17.226",
+        "URL_FR": "54.169.17.226",
+        
+        "URL_REPORT":"54.169.17.226",
+        "URL_USER_PROFILE":"54.169.17.226"
+    },
+    "CONFIG": {
+        "SET_TIME_INTERVAL": "60000"
+    },
+
+    "LOGIN":{
+        "USER": "root",
+        "PASS": "pass",
+        "__comment1__": "use ip for Normal 54.169.17.226",
+        "__comment2__": "use ip for test log 13.213.53.132"
+    }
+
+}

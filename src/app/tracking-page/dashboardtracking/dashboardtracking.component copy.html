@@ -1,0 +1,316 @@
+<body>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--
+    <div class="row0 ">
+      <div class=" col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 ">
+        <div class="top-header-block1">
+          <div class="top-header-group">
+            <div>
+              <h1>Tracking Dashboard</h1>
+            </div>
+        </div>
+      </div>
+    </div>
+      <div class=" col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 ">
+        <div class="top-header-block2">
+          <div class="top-header-group">
+            <div>
+              <h1></h1>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class=" col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 ">
+      <div class="top-header-block3">
+        <div class="top-header-group">
+          <div>
+            <h1></h1>
+          </div>
+      </div>
+    </div>
+  </div> 
+  </div>-->
+  <div class="row1">
+    <div class=" col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12 ">
+        <div class="Block-1"> 
+          <!------------------------------------------------------FACE REG SECTION------------------------------------------------------------------------->
+          <img class="FR-Route-Button" *ngIf="MapShow == 1 && PersonClickCount == 1" (click)="ShowRoutePopup()" src="./assets/images/Tracking/FR-route-default.png">
+
+          <div class="FR-RoutingShow" *ngIf="ShowRoutePopupBlock == 1 && MapShow == 1 && PersonClickCount == 1 ">
+            <img class="FRCross2" (click)="CloseRoutePopup()" src="./assets/images/Tracking/Cross.svg">
+            <div class="Header-Routing">
+              <img class="RoutingImgBase" src={{FRImgBase}}>
+              <span class="RoutingName">{{FRName}} {{FRLastName}}</span>
+              <span class="RoutingDate">วันที่ {{DateTimeCalendarRange}}</span>
+              <span class="RoutingLabel">เส้นทาง</span>
+            </div>
+              <div class="Routing-Table scrollbar-primary" (scroll)="onScroll($event)" >
+                <div class="Routing-Data" *ngFor="let item of DataFRRoute;let Data of FRDateData; index as i "  (click)="ClickPoint(TotalRouteFR - i)">
+                  <div class="Routing-Number-Border">
+                    <span  class="RoutingDetail-Number" >{{TotalRouteFR - i}}</span><br>
+                    <img class="Dott" src="./assets/images/Tracking/line-dotted.svg">
+                  </div>
+                  <span  class="RoutingDetail-Location">Location Name</span>
+                  <span  class="RoutingDetail-Device">Device Name</span>
+                  <span  class="RoutingDetail-Time">{{Data.Time}}</span>
+                  <span  class="RoutingDetail-Date">{{Data.Date}}</span><br>
+                  
+                </div>
+            </div>
+          </div>
+
+          <img class="FR-Button" *ngIf="MapShow == 1 && PersonClickCount == 1" (click)="ShowFacePopup()" src="./assets/images/Tracking/FR-default.png">
+
+          <div class="FR-FaceShow" *ngIf="ShowFacePopupBlock == 1 && MapShow == 1 && PersonClickCount == 1">
+            <img class="FRCross" (click)="CloseFacePopup()" src="./assets/images/Tracking/Cross.svg">
+            <img class="FRImgBase" src={{FRImgBase}}>
+            <img class="FRImgSnapshot" src={{FRImgSnapshot}}>
+          </div>
+
+          <!------------------------------------------------------LPR SECTION------------------------------------------------------------------------->
+          
+          <img class="LPR-Route-Button" *ngIf="MapShow == 1 && CarClickCount == 1" (click)="ShowRoutePopup()" src="./assets/images/Tracking/LPR-route-default.png">
+
+          <div class="FR-RoutingShow scrollbar-primary" *ngIf="ShowRoutePopupBlock == 1 && MapShow == 1 && CarClickCount == 1">
+            <img class="FRCross2" (click)="CloseRoutePopup()" src="./assets/images/Tracking/Cross.svg">
+            <div class="Header-Routing">
+              <img class="RoutingImgBase" src={{LPRImgBase}}>
+              <span class="RoutingName">{{LPRPlate}} {{LPRProvince}}</span>
+              <span class="RoutingCarDetail">ยี่ห้อ, สี</span>
+              <span class="RoutingDateHead">เส้นทางการเดินรถ</span>
+              <span class="RoutingDate2">{{DateTimeCalendarRange}}</span>
+            </div>
+              <div class="Routing-Table scrollbar-primary" (scroll)="onScroll2($event)">
+                <div class="Routing-Data" *ngFor="let item of DataLPRRoute;let Data of LPRDateData; index as i " (click)="ClickPoint(TotalRouteLPR - i)" >
+                  <div class="Routing-Number-Border">
+                    <span  class="RoutingDetail-Number">{{TotalRouteLPR - i}}</span><br>
+                    <img class="Dott" src="./assets/images/Tracking/line-dotted.svg">
+                  </div>
+                  <span  class="RoutingDetail-Location">LOCATION_ID</span>
+                  <span  class="RoutingDetail-Device">Device Name</span>
+                  <span  class="RoutingDetail-Time">{{Data.Time}}</span>
+                  <span  class="RoutingDetail-Date">{{Data.Date}}</span><br>
+                  
+                </div>
+            </div>
+          </div>
+
+          <img class="LPR-Button" *ngIf="MapShow == 1 && CarClickCount == 1" (click)="ShowFacePopup()" src="./assets/images/Tracking/LPR-default.png">
+
+          <div class="FR-FaceShow" *ngIf="ShowFacePopupBlock == 1 && MapShow == 1 && CarClickCount == 1">
+            <img class="FRCross" (click)="CloseFacePopup()" src="./assets/images/Tracking/Cross.svg">
+            <img class="FRImgBase" src={{LPRImgBase}}>
+            <img class="FRImgSnapshot" src={{LPRImgSnapshot}}>
+          </div>
+        -->
+          <!------------------------------------------------------MAP SECTION------------------------------------------------------------------------->
+          <div class="NoRoute" *ngIf = "latti == null && longi == null">
+            <span><h1>No Routing</h1></span>
+          </div>
+          
+          <div *ngIf="MapShow == 0 "
+            class="leaflet-map-block"
+            leaflet
+            [leafletOptions]="options"
+            (leafletMapReady)="onMapReady($event)"
+          ></div>
+
+          <div *ngIf="MapShow == 1 && MapRefreshCount > 0  "
+          class="leaflet-map-block"
+          leaflet
+          [leafletOptions]="options"
+          (leafletMapReady)="onMapReady($event)"
+        ></div>
+        <div *ngIf="MapShow == 1 && FRClickEventCount == 0 && FRClickCount > 0 ;"
+          class="leaflet-map-block"
+          leaflet
+          [leafletOptions]="options"
+          (leafletMapReady)="onMapReady($event)"
+        ></div>
+        <div *ngIf="MapShow == 1 && FRClickEventCount == 1 && FRClickCount > 0 ;"
+          class="leaflet-map-block"
+          leaflet
+          [leafletOptions]="options"
+          (leafletMapReady)="onMapReady($event)"
+        ></div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="Block-2">
+          <div class="Block-header">
+            <img class="SVG-Path" src="./assets/images/Tracking/Path.png">
+            <span *ngIf="PersonClickCount == 1" class="Block-text-header">Face Recognition : เหตุการณ์</span>
+            <span *ngIf="CarClickCount == 1" class="Block-text-header">LPR : เหตุการณ์</span>
+            <img *ngIf="PersonClickCount == 0"class="SVG-Person" (click)="PersonClick()" src="./assets/images/Tracking/Person.png">
+            <img *ngIf="PersonClickCount == 1" class="SVG-Person" src="./assets/images/Tracking/PersonClick.png">
+            <img *ngIf="CarClickCount == 0" class="SVG-Car" (click)="CarClick()" src="./assets/images/Tracking/Car.png">
+            <img *ngIf="CarClickCount == 1"class="SVG-Car" src="./assets/images/Tracking/CarClick.png">
+          </div>
+          <div class="Content-Face-Recognition" style="height: 950px;" *ngIf="PersonClickCount == 1" >
+            <div class="DropdownBlock">
+              <div class="DropdownCalendarRangeFrom">
+                <div class="DropdownSituationLabel">
+                  <span class="SituationLabel" ></span>
+                </div>
+                <mat-form-field  style="z-index: 1;">
+                  <input matInput
+                  class="Calendar-input"
+                  placeholder="" 
+                  name="date_time"
+                  [max]="limitDate"
+                  [(ngModel)]="DateTimeCalendar"
+                  [selectMode]="'rangeFrom'"
+                  [owlDateTime]="dtRange2"
+                  (ngModelChange)="changeTimeCalendarTrackingFromTo(DateTimeCalendarFrom = $event);DateTimeLimit($event)">
+                  <input
+                  (click)="ShowAlert()"
+                  class="Calendar-output"
+                  type="text"
+                  [owlDateTimeTrigger]="dtRange2"
+                  [value]="DateTimeCalendarRangeFrom"
+                  > 
+                  <owl-date-time backdropClass="myBackdropClass" panelClass="myPanelClass"  [pickerType]="'calendar'" #dtRange2></owl-date-time>
+                  <mat-icon matPrefix>calendar_today</mat-icon>
+                  <mat-icon class="Dropdown-Arrow" matPrefix>arrow_drop_down</mat-icon>
+                </mat-form-field>
+              </div>
+              <div class="DropdownCalendarRangeTo">
+                <div class="DropdownSituationLabel">
+                  <span class="SituationLabel" ></span>
+                </div>
+                <mat-form-field style="z-index: 1;">
+                  <input matInput 
+                  class="Calendar-input"
+                  placeholder="" 
+                  name="date_time"
+                  [min]="limitDayBefore"
+                  [max]="limit7Days"
+                  [(ngModel)]="DateTimeCalendar"
+                  [selectMode]="'rangeTo'"
+                  [owlDateTime]="dtRange3"
+                  (ngModelChange)="changeTimeCalendarTrackingFromTo(DateTimeCalendarTo = $event)">
+                  <input
+                  class="Calendar-output"
+                  type="text"
+                  [owlDateTimeTrigger]="dtRange3"
+                  [value]="DateTimeCalendarRangeTo"
+                  > 
+                  <owl-date-time backdropClass="myBackdropClass" panelClass="myPanelClass" [pickerType]="'calendar'" #dtRange3></owl-date-time>
+                  <mat-icon matPrefix>calendar_today</mat-icon>
+                  <mat-icon class="Dropdown-Arrow" matPrefix>arrow_drop_down</mat-icon>
+                </mat-form-field>
+              </div>
+            </div>
+            <input class="tracking-search"  type="text" (keyup.enter)="EmployeeNameData(EmployeeName)" [(ngModel)]="EmployeeName" placeholder="ค้นหา" >
+            <img class="SVG-Search"  src="./assets/images/Tracking/search.svg" (click)="EmployeeNameData(EmployeeName)">
+            <div *ngIf="NoDataActive == 1" class="NoData">
+              <span>No Data</span>
+            </div>
+            <div  class="Block-Data-Tracking scrollbar-primary">
+              <app-face-datatable *ngIf="FRshow >= 1" [DataFRTransfer]="DataFREvent" (clickDataFR)="onClickDataFR($event)" (click)="GetRouteFR(createmap)"  ></app-face-datatable>
+            </div>
+            <ngb-pagination class="d-flex justify-content-center" [pageSize] = "PageSize" [collectionSize]="PageMaxSize" [(page)]="PageCurrent" [maxSize]="5" 
+            [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="PageSelect(PageCurrent);showSpinner()" size="sm" aria-label="Default pagination"></ngb-pagination>
+          </div>
+          
+          <div class="Alert" [class.visible]="isVisible"> 
+            <span>เลือกได้สูงสุด 7 วัน</span>
+          </div>
+          
+          <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+          <div class="Content-LPR" style="height: 950px;" *ngIf="CarClickCount == 1">
+            <div class="DropdownBlock">
+              <div class="DropdownCalendarRangeFrom">
+                <div class="DropdownSituationLabel">
+                  <span class="SituationLabel" ></span>
+                </div>
+                <mat-form-field style="z-index: 1;">
+                  <input matInput 
+                  class="Calendar-input"
+                  placeholder="" 
+                  name="date_time"
+                  [max]="limitDate"
+                  [(ngModel)]="DateTimeCalendar"
+                  [selectMode]="'rangeFrom'"
+                  [owlDateTime]="dtRange2"
+                  (ngModelChange)="changeTimeCalendarTrackingFromTo(DateTimeCalendarFrom = $event);DateTimeLimit($event)">
+                  <input
+                  (click)="ShowAlert()"
+                  class="Calendar-output"
+                  type="text"
+                  [owlDateTimeTrigger]="dtRange2"
+                  [value]="DateTimeCalendarRangeFrom"
+                  > 
+                  <owl-date-time backdropClass="myBackdropClass" panelClass="myPanelClass" [pickerType]="'calendar'" #dtRange2></owl-date-time>
+                  <mat-icon matPrefix>calendar_today</mat-icon>
+                  <mat-icon class="Dropdown-Arrow" matPrefix>arrow_drop_down</mat-icon>
+                </mat-form-field>
+              </div>
+              <div class="DropdownCalendarRangeTo">
+                <div class="DropdownSituationLabel">
+                  <span class="SituationLabel" ></span>
+                </div>
+                <mat-form-field style="z-index: 1;">
+                  <input matInput 
+                  class="Calendar-input"
+                  placeholder="" 
+                  name="date_time"
+                  [min]="limitDayBefore"
+                  [max]="limit7Days"
+                  [(ngModel)]="DateTimeCalendar"
+                  [selectMode]="'rangeTo'"
+                  [owlDateTime]="dtRange3"
+                  (ngModelChange)="changeTimeCalendarTrackingFromTo(DateTimeCalendarTo = $event)">
+                  <input
+                  class="Calendar-output"
+                  type="text"
+                  [owlDateTimeTrigger]="dtRange3"
+                  [value]="DateTimeCalendarRangeTo"
+                  > 
+                  <owl-date-time backdropClass="myBackdropClass" panelClass="myPanelClass" [pickerType]="'calendar'" #dtRange3></owl-date-time>
+                  <mat-icon matPrefix>calendar_today</mat-icon>
+                  <mat-icon class="Dropdown-Arrow" matPrefix>arrow_drop_down</mat-icon>
+                </mat-form-field>
+              </div>
+            </div>
+            <div [@slideInOut]="helpMenuOpen" class="Content-LPR2">
+              <input class="tracking-search-plate"  type="text" (keyup.enter)="CarPlateData(CarPlate)" [(ngModel)]="CarPlate" placeholder="ค้นหาเลขทะเบียนรถ, หมวดหมู่" >
+              <img class="SVG-Search21"  src="./assets/images/Tracking/search.svg" (click)="CarPlateData(CarPlate)">
+
+              <input class="tracking-search-province"  type="text" (keyup.enter)="CarProvinceData(CarProvince)" [(ngModel)]="CarProvince" placeholder="จังหวัด" >
+              <img class="SVG-Search22"  src="./assets/images/Tracking/search.svg" (click)="CarProvinceData(CarProvince)">
+
+              <input class="tracking-search-type"  type="text" (keyup.enter)="CarTypeData(CarType)" [(ngModel)]="CarType" placeholder="ประเภทรถ"   >
+              <img class="SVG-Search23"  src="./assets/images/Tracking/search.svg" (click)="CarTypeData(CarType)">
+
+              <input class="tracking-search-brand"  type="text" (keyup.enter)="CarBrandData(CarBrand)" [(ngModel)]="CarBrand" placeholder="ยี่ห้อ">
+              <img class="SVG-Search24"  src="./assets/images/Tracking/search.svg" (click)="CarBrandData(CarBrand)">
+
+              <input class="tracking-search-model"  type="text" (keyup.enter)="CarModelData(CarModel)" [(ngModel)]="CarModel" placeholder="รุ่นรถ">
+              <img class="SVG-Search25"  src="./assets/images/Tracking/search.svg" (click)="CarModelData(CarModel)">
+
+              <input class="tracking-search-color"  type="text" (keyup.enter)="CarColorData(CarColor)" [(ngModel)]="CarColor" placeholder="สีรถ"  >
+              <img class="SVG-Search26"  src="./assets/images/Tracking/search.svg" (click)="CarColorData(CarColor)">
+
+              <input class="tracking-search-location"  type="text" (keyup.enter)="CarLocationData(CarLocation)" [(ngModel)]="CarLocation" placeholder="Location ID" >
+              <img class="SVG-Search27"  src="./assets/images/Tracking/search.svg" (click)="CarLocationData(CarLocation)">
+
+              <button class="Tracking-Search-All" (click)="toggleHelpMenu();CarPlateData(CarPlate);CarProvinceData(CarProvince);CarTypeData(CarType);CarBrandData(CarBrand);CarModelData(CarModel);CarColorData(CarColor);CarLocationData(CarLocation)">ค้นหา</button>
+           </div>
+           <img class="ArrowSlide1" (click)="toggleHelpMenu()" [@rotatedState]='state'  src="./assets/images/Tracking/ArrowSlide.png">
+           <div  class="Block-Data-Tracking2 scrollbar-primary" [@resizeState]='state2'>
+             <div *ngIf="NoDataActive2 == 1" class="NoData">
+              <span>No Data</span>
+            </div>
+            <ngx-loading class="loadingLPR" [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+            <app-lpr-datatable *ngIf="LPRshow >= 1" [DataLPRTransfer]="DataLPREvent" (clickDataLPR)="onClickDataLPR($event)" (click)="GetRouteLPR(createmap2)"></app-lpr-datatable>
+          </div>
+          <ngb-pagination *ngIf="StateValue == 0"class="d-flex justify-content-center" [pageSize] = "PageSize2" [collectionSize]="PageMaxSize2" [(page)]="PageCurrent2" [maxSize]="5" 
+          [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="PageSelect2(PageCurrent2);showSpinner()" size="sm" aria-label="Default pagination"></ngb-pagination>
+          </div>
+        </div>
+      </div>
+  </div> 
+</body>         

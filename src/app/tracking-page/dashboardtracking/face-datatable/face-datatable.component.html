@@ -1,0 +1,29 @@
+<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
+    <div class="row-history" *ngFor='let item of DataFRTransfer' (click)="onClickDataFR(item)">
+        <div class=" col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+            <div class="FR-block" tabindex="1">
+              <div class='Block-Highlight' ></div>
+              <div class="text-img">
+                <img class="Tracking-FaceReg" src={{item.FR_PATH_IMAGE_BASE}}>
+              </div>
+              <div class="FR-line1">               
+                <div class="text-name">
+                  <h3>{{item.FIRST_NAME}} {{item.LAST_NAME}}</h3>
+                </div>
+                <div class="text-status" style="display: none;">
+                  <h3>123</h3>
+                </div>
+              </div>
+              <div class="FR-line2">
+                <div class="text-time">
+                  <h3>{{item.STAMP_DATETIME}}</h3>
+                </div>
+                <div class="text-device">
+                  <h3>{{item.DEVICE_NAME}}</h3>
+                </div>
+              </div>  
+           </div>
+        </div>
+    </div>

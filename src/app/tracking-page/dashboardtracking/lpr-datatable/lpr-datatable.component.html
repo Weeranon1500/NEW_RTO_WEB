@@ -1,0 +1,29 @@
+<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
+    <div class="row-history" *ngFor='let item2 of DataLPRTransfer' (click)="onClickDataLPR(item2)">
+        <div class=" col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+            <div class="LPR-block" tabindex="1">
+              <div class='Block-Highlight' ></div>
+              <div class="text-img">
+                <img class="Tracking-LPR" src={{item2.LPR_PATH_IMAGE_PLATE}}>
+              </div>
+              <div class="LPR-line1">               
+                <div class="text-name">
+                  <h3>{{item2.LPR_LICENSE}}</h3>
+                </div>
+                <div class="text-province">
+                  <h3>{{item2.LPR_PROVINCE}}</h3>
+                </div>
+              </div>
+              <div class="LPR-line2">
+                <div class="text-time">
+                  <h3>{{item2.CREATE_AT}}</h3>
+                </div>
+                <div class="text-device">
+                  <h3>{{item2.DEVICE_NAME}}</h3>
+                </div>
+              </div>  
+           </div>
+        </div>
+    </div>
