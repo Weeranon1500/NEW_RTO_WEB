@@ -32,6 +32,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { DailyreportComponent } from './daily-report/dailyreport/dailyreport.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -45,6 +46,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     FaceDatatableComponent,
     LprDatatableComponent,
     DailyreportComponent,
+    LoginComponent,
 
 
   ],

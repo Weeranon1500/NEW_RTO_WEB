@@ -70,11 +70,11 @@ body {
 }
 
 
-/* .mat-body, .mat-body-1, .mat-typography {
+.mat-body, .mat-body-1, .mat-typography {
     font: 400 14px/20px Roboto, "Helvetica Neue", sans-serif;
     letter-spacing: normal;
     background: #1B1F22;
-    } */
+    }
 
     
 
@@ -228,6 +228,61 @@ body {
     white-space: nowrap;
 }
 
+input[type=checkbox] {
+    position: relative;
+    cursor: pointer;
+      
+}
+
+#Sit input[type=checkbox] {
+    position: relative;
+    cursor: pointer;
+    display: none;
+      
+}
+
+input[type=checkbox]:before {/*checkbox Default*/
+    content: "";
+    display: block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: -1px;
+    left: -1px;
+    background-color:#1C1F24;
+    border-radius: 4px;
+   
+}
+input[type=checkbox]:checked:before {/*checkbox Default*/
+    content: "";
+    display: block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: -1px;
+    left: -1px;
+    background-color:#45AEEF;
+    border-radius: 4px;
+}
+input[type=checkbox]:checked:after { /*เครื่องหมายถูกใน Dropdown*/
+    content: "";
+    display: block;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    position: absolute;
+    top: 0px;
+    left: 4px;
+}
+
+input[type=checkbox], input[type=radio] {
+    margin: 4px 10px 0px 0px !important;
+    line-height: normal;
+}
 
 .ng-select.ng-select-single .ng-select-container { /*dropdown sigle no checkbox*/
     height: 47px;

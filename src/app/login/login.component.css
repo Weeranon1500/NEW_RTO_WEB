@@ -1,0 +1,134 @@
+body {
+    display: flex;
+    background: white;
+}
+
+.login_div{
+    width: 500px;
+    /* background: green; */
+    margin: auto auto;
+}
+
+.login_content{
+    display: flex;
+    flex-direction: column;
+}
+
+.login_logo{
+    display: flex;
+    justify-content: center;
+}
+
+.login_header{
+    margin-top: 53px;
+}
+
+.login_password{
+    margin-top: 16px;
+}
+
+.login_header_content{
+    display: flex;
+    justify-content: center;
+}
+
+.login_email_content{
+    display: flex;
+    justify-content: center;
+}
+
+.login_bottom_content{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+}
+
+.login_forgot_password_text{
+    padding-right: 14%;
+}
+
+.login_submit_content{
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.login_footer_content{
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.input_email{
+    width: 62%;
+    height: 38px;
+    padding: 0 35px 0 13px;
+    border-radius: 4px;
+    border: 1px solid #E6E7E8;
+    box-shadow: 0 0.5px 1px 0 rgb(0 0 0 / 8%);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #6C757D;
+}
+
+.login_email_text{
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 13%;
+}
+
+.login_rememberme_text{
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 13%;
+}
+
+.login_submit_button{
+    display: flex;
+    justify-content: flex-start;
+    width: 72.9%;
+}
+
+.submit_login{
+    width: 100%;
+    height: 38px;
+    background: #0D6EFD;
+    border-radius: 4px;
+    border: none;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #FFFFFF;
+}
+
+/************************************password input*******************************************/
+
+.icon_div{
+    position: absolute;
+    padding-left: 350px;
+    padding-top: 5px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+}
+
+.icon_eye {
+    width: 2px;
+    position: relative;
+    right: 30px;
+    font-size: 20px;
+    line-height: 40px;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+.hide {
+    display: none;
+  }
+
+  .password_icon{
+    display: flex;
+  }

@@ -1,0 +1,141 @@
+<body>
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+  />
+  <div class="login_div">
+    <div class="login_content">
+      <div class="login_logo">
+        <img
+          class="img-total-device"
+          style="width: 60%"
+          src="assets/images/Login/Login_Logo.svg"
+        />
+      </div>
+      <div class="login_header">
+        <div class="login_header_content">
+          <span style="font-weight: 500; font-size: 32px; line-height: 120%">
+            Login to your account
+          </span>
+        </div>
+        <div class="login_header_content">
+          <span
+            style="
+              font-weight: 400;
+              font-size: 16px;
+              line-height: 150%;
+              color: #6c757d;
+            "
+          >
+            Welcome back! Please enter your details.
+          </span>
+        </div>
+      </div>
+      <div class="login_header">
+        <div class="login_email_text">
+          <span style="font-weight: 400; font-size: 16px; line-height: 150%">
+            Email
+          </span>
+        </div>
+        <div class="login_email_content">
+          <input type="text" value="" class="input_email" placeholder="Email" />
+        </div>
+      </div>
+      <div class="login_password">
+        <div class="login_email_text">
+          <span style="font-weight: 400; font-size: 16px; line-height: 150%">
+            Password
+          </span>
+        </div>
+        <div class="login_email_content">
+          <input
+            name="password"
+            [type]="showPassword ? 'text' : 'password'"
+            class="input_email"
+            placeholder="Password"
+          />
+          <div class="password_icon">
+            <i
+              alt="show"
+              class="far fa-eye eye-show icon_eye"
+              (click)="showPassword = !showPassword"
+              [class.hide]="showPassword"
+            ></i>
+            <i
+              alt="hide"
+              class="far fa-eye-slash eye-hide icon_eye"
+              (click)="showPassword = !showPassword"
+              [class.hide]="!showPassword"
+            ></i>
+          </div>
+        </div>
+      </div>
+      <div class="login_bottom_content">
+        <div class="login_rememberme_text">
+          <input
+            style="
+              font-weight: 400;
+              font-size: 16px;
+              line-height: 150%;
+              color: #212529;
+            "
+            type="checkbox"
+          /><span
+            style="
+              font-weight: 400;
+              font-size: 16px;
+              line-height: 150%;
+              color: #212529;
+            "
+          >
+            Remeber me
+          </span>
+        </div>
+        <div class="login_forgot_password_text">
+          <a
+            style="
+              font-weight: 400;
+              font-size: 16px;
+              line-height: 150%;
+              color: #0d6efd;
+            "
+            href=""
+            >Forgot password</a
+          >
+        </div>
+      </div>
+      <div class="login_submit_content">
+        <div class="login_submit_button">
+          <button class="submit_login">Sign in</button>
+        </div>
+      </div>
+      <div class="login_footer_content">
+        <div class="login_signin">
+          <span
+            style="
+              font-weight: 400;
+              font-size: 16px;
+              line-height: 150%;
+              color: #6c757d;
+            "
+          >
+            Don’t have an account?
+          </span>
+          <a
+            style="
+              font-weight: 400;
+              font-size: 16px;
+              line-height: 150%;
+
+              color: #0d6efd;
+            "
+            href=""
+          >
+            Sign up
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
